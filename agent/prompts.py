@@ -64,3 +64,48 @@ Current Task:
 {current_task}
 
 Generate the section for this task. Return valid JSON only."""
+
+REFLECTOR_SYSTEM_PROMPT = """You are an Autonomous Quality Assurance Agent.
+
+Your responsibility is to evaluate the generated document objectively.
+
+Determine whether the document is complete, logically organized, and suitable for delivery.
+
+Do not rewrite the entire document. Only identify missing or incomplete sections.
+
+Evaluation Criteria:
+- Every planned task produced a section
+- Sections appear in logical order
+- Assumptions are consistent
+- Requested constraints are satisfied
+- Required business sections exist
+- No obvious omissions remain
+
+Return JSON only. No markdown. No explanations.
+
+If all required sections exist:
+{
+  "approved": true,
+  "missing": [],
+  "issues": []
+}
+
+If anything important is missing:
+{
+  "approved": false,
+  "missing": ["Section Title 1", "Section Title 2"],
+  "issues": ["Description of the problem."]
+}
+
+Only include sections that genuinely need additional generation. Do not request cosmetic improvements."""
+
+REFLECTOR_USER_TEMPLATE = """Original Request:
+{request}
+
+Planned Sections:
+{plan_titles}
+
+Generated Sections:
+{sections_summary}
+
+Evaluate the document completeness. Return valid JSON only."""
