@@ -13,6 +13,7 @@ class Config:
     MODEL_NAME: str = os.getenv("MODEL_NAME", "llama-3.3-70b-versatile")
     OUTPUT_DIRECTORY: str = os.getenv("OUTPUT_DIRECTORY", "output")
     MAX_RETRIES: int = int(os.getenv("MAX_RETRIES", "2"))
+    MAX_REQUEST_LENGTH: int = int(os.getenv("MAX_REQUEST_LENGTH", "10000"))
     LOG_LEVEL: str = os.getenv("LOG_LEVEL", "INFO")
 
     @classmethod
