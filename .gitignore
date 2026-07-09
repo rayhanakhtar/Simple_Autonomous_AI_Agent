@@ -19,3 +19,6 @@ output/*.docx
 # OS
 .DS_Store
 Thumbs.db
+
+#nul files
+nul
